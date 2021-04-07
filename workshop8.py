@@ -4,14 +4,11 @@ from prettytable import PrettyTable
 import numpy as np
 from pandas import *
 
+# form should be an array with k elements, with no element less than 1 and greater than k
+# vectors should be an k x n numpy matrix    
+# need to subtract one since forms are written with a start of 1
 def get_form(form, vectors):
-    # form should be an array with k elements, with no element less than 1 and greater than k
-    # vectors should be an k x n numpy matrix
-    
-    # need to subtract one since forms are written with a start of 1
     m = np.array(vectors)[:, [f-1 for f in form]]
-    
-    # print(DataFrame(vectors, columns = [""]*vectors.shape[1]).to_string(index=False))
     return np.linalg.det(m)
 
 def phi(va):
@@ -31,10 +28,7 @@ def get_signature(p):
             if y > x and p[x] > p[y]:
                 # print(f"{p}: {x} < {y} => {p[x]} > {p[y]}")
                 n += 1
-    
     return (-1)**n
-        
-    pass
 
 def get_permutation_cycles(a,b):
     n = a+b

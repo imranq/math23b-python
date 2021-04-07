@@ -36,6 +36,8 @@ sgn = [get_signature(p) for p in permutations]
 ## Format results
 
 data = []
+summands = []
+
 for x in range(0, len(permutations)):
     row = [x+1, permutations[x], sgn[x]]
     current_sign = sgn[x]
@@ -47,9 +49,12 @@ for x in range(0, len(permutations)):
         prod = "-"+prod
 
     row.append(prod)
+    summands.append(prod)
     data.append(row)
 
 x = PrettyTable()
 x.field_names = ["#", "Sigma", "sgn(s)", "sgn*phi*psi"]
 x.add_rows(data)
 print(x)
+
+print(f"phi^psi = {' + '.join(summands)}")
